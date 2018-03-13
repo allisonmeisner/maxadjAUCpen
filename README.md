@@ -107,24 +107,34 @@ rlogit, solnp, foreach, %dopar%
 __Examples__
 
 ## takes a few minutes to run
+
 expit <- function(x){
+
 exp(x)/(1+exp(x))
+
 }
+
 set.seed(1)
+
 covar <- rep(c(1:5),each=200)
+
 x1 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+
 x2 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+
 x3 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+
 x4 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+
 covint <- rep(runif(5,-1.5,1.5), each=200)
+
 y <- rbinom(1000,1,expit(covint + 1*x1 - 1*x2 + 1*x3 - 1*x4))
+
 X <- cbind(x1,x2,x3,x4)
-output <- maxadjAUC(outcome=y, predictors=X, covariate=covar, lambda=0,
-lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=10),
-initialval="rGLM", approxh = 1/3, conditional=FALSE,
-tolval = 1e-6, stepsz = 1e-5,
-warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")
-6 maxadjAUC
+
+output <- maxadjAUC(outcome=y, predictors=X, covariate=covar, lambda=0, lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=10), initialval="rGLM", approxh = 1/3, conditional=FALSE, tolval = 1e-6, stepsz = 1e-5, warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")
+
 plot.new()
+
 output[["plotOut"]]
 
