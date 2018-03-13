@@ -56,13 +56,18 @@ In both plots, the left y-axis corresponds to the AUC and the right x-axis corre
 The function is set up to allow for parallel processing via foreach::foreach. To incorporate parallel processing, users must have (e.g., to set up 4 clusters)
 
 `library(doParallel)`
+
 `cl = makeCluster(4)`
+
 `registerDoParallel(cl)`
+
 `maxadjAUC(...)`
+
 `stopCluster(cl)`
 
 If users do not register clusters, a warning will be issued:
-Warning message: executing %dopar% sequentially: no parallel backend registered
+
+`Warning message: executing %dopar% sequentially: no parallel backend registered`
 
 __Value__
 
@@ -102,39 +107,39 @@ Meisner, A., Parikh, C.R., and Kerr, K.F. (2017). Developing biomarker combinati
 
 __See Also__
 
-rlogit, solnp, foreach, %dopar%
+`rlogit, solnp, foreach, %dopar%`
 
 __Examples__
 
-`## takes a few minutes to run
+`## takes a few minutes to run`
 
-expit <- function(x){
+`expit <- function(x){`
 
-exp(x)/(1+exp(x))
+`exp(x)/(1+exp(x))`
 
-}
+`}`
 
-set.seed(1)
+`set.seed(1)`
 
-covar <- rep(c(1:5),each=200)
+`covar <- rep(c(1:5),each=200)`
 
-x1 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+`x1 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))`
 
-x2 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+`x2 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))`
 
-x3 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+`x3 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))`
 
-x4 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))
+`x4 <- rnorm(1000,0,rep(runif(5,0.8,1.2),each=200))`
 
-covint <- rep(runif(5,-1.5,1.5), each=200)
+`covint <- rep(runif(5,-1.5,1.5), each=200)`
 
-y <- rbinom(1000,1,expit(covint + 1*x1 - 1*x2 + 1*x3 - 1*x4))
+`y <- rbinom(1000,1,expit(covint + 1*x1 - 1*x2 + 1*x3 - 1*x4))`
 
-X <- cbind(x1,x2,x3,x4)
+`X <- cbind(x1,x2,x3,x4)`
 
-output <- maxadjAUC(outcome=y, predictors=X, covariate=covar, lambda=0, lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=10), initialval="rGLM", approxh = 1/3, conditional=FALSE, tolval = 1e-6, stepsz = 1e-5, warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")
+`output <- maxadjAUC(outcome=y, predictors=X, covariate=covar, lambda=0, lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=10), initialval="rGLM", approxh = 1/3, conditional=FALSE, tolval = 1e-6, stepsz = 1e-5, warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")`
 
-plot.new()
+`plot.new()`
 
-output[["plotOut"]]`
+`output[["plotOut"]]`
 
