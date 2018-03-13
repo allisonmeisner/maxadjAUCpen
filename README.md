@@ -55,11 +55,11 @@ In both plots, the left y-axis corresponds to the AUC and the right x-axis corre
 
 The function is set up to allow for parallel processing via foreach::foreach. To incorporate parallel processing, users must have (e.g., to set up 4 clusters)
 
-`library(doParallel)
-cl = makeCluster(4)
-registerDoParallel(cl)
-maxadjAUC(...)
-stopCluster(cl)`
+`library(doParallel)`
+`cl = makeCluster(4)`
+`registerDoParallel(cl)`
+`maxadjAUC(...)`
+`stopCluster(cl)`
 
 If users do not register clusters, a warning will be issued:
 Warning message: executing %dopar% sequentially: no parallel backend registered
