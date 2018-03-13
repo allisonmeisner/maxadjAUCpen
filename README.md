@@ -17,7 +17,7 @@ Often there is interest in combining several predictors or biomarkers into a lin
 
 __Usage__
 
-maxadjAUC(outcome, predictors, covariate, lambda=0, lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=20), initialval="rGLM", approxh = 1/3, conditional=FALSE, tolval = 1e-6, stepsz = 1e-5, warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")
+`maxadjAUC(outcome, predictors, covariate, lambda=0, lambdaseq=10^seq(from=log10(0.1), to=log10(200), length=20), initialval="rGLM", approxh = 1/3, conditional=FALSE, tolval = 1e-6, stepsz = 1e-5, warnfileTR="warnTR.txt", warnfileCV="warnCV.txt")`
 
 __Arguments__
 
